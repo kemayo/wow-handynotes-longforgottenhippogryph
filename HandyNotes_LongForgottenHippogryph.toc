@@ -1,6 +1,6 @@
 ## Interface: 70000
 ## Title: HandyNotes_LongForgottenHippogryph
-## Notes: Find those Ephemeral Orbs!
+## Notes: Find those Ephemeral Crystals!
 ## Author: Kemayo
 ## Version: 1
 ## DefaultState: enabled

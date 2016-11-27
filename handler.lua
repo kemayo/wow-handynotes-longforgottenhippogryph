@@ -9,6 +9,7 @@ local next = next
 local GameTooltip = GameTooltip
 local WorldMapTooltip = WorldMapTooltip
 local HandyNotes = HandyNotes
+local DEFAULT_LABEL = "Ephemeral Crystal"
 
 local icon_cache = {}
 local function poi_texture(poi)
@@ -56,7 +57,7 @@ end
 
 local get_point_info = function(point)
     if point then
-        return point.label, work_out_texture(point), point.scale
+        return point.label or DEFAULT_LABEL, work_out_texture(point), point.scale
     end
 end
 local get_point_info_by_coord = function(mapFile, coord)
@@ -66,7 +67,7 @@ end
 
 local function handle_tooltip(tooltip, point)
     if point then
-        tooltip:AddLine(point.label)
+        tooltip:AddLine(point.label or DEFAULT_LABEL)
         if point.quest and not IsQuestFlaggedCompleted(point.quest) then
             tooltip:AddLine(NEED, 1, 0, 0)
         end

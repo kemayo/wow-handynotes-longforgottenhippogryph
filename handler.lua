@@ -181,12 +181,13 @@ function HLHandler:OnLeave(uiMapID, coord)
 end
 
 do
+    local currentZone
     -- This is a custom iterator we use to iterate over every node in a given zone
     local function iter(t, prestate)
         if not t then return nil end
         local state, value = next(t, prestate)
         while state do -- Have we reached the end of this zone?
-            if value then
+            if value and not ns.hidden[currentZone][state] then
                 local label, icon, scale = get_point_info(value)
                 scale = (scale or 1) * (icon and icon.scale or 1) * ns.db.icon_scale
                 return state, nil, icon, scale, ns.db.icon_alpha
@@ -196,6 +197,7 @@ do
         return nil, nil, nil, nil
     end
     function HLHandler:GetNodes2(uiMapID, minimap)
+        currentZone = uiMapID
         return iter, ns.points[uiMapID], nil
     end
 end

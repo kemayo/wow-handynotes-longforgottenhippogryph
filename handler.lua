@@ -60,9 +60,8 @@ local get_point_info = function(point)
         return point.label or DEFAULT_LABEL, work_out_texture(point), point.scale
     end
 end
-local get_point_info_by_coord = function(mapFile, coord)
-    mapFile = string.gsub(mapFile, "_terrain%d+$", "")
-    return get_point_info(ns.points[mapFile] and ns.points[mapFile][coord])
+local get_point_info_by_coord = function(uiMapID, coord)
+    return get_point_info(ns.points[uiMapID] and ns.points[uiMapID][coord])
 end
 
 local function handle_tooltip(tooltip, point)
@@ -79,9 +78,8 @@ local function handle_tooltip(tooltip, point)
     end
     tooltip:Show()
 end
-local handle_tooltip_by_coord = function(tooltip, mapFile, coord)
-    mapFile = string.gsub(mapFile, "_terrain%d+$", "")
-    return handle_tooltip(tooltip, ns.points[mapFile] and ns.points[mapFile][coord])
+local handle_tooltip_by_coord = function(tooltip, uiMapID, coord)
+    return handle_tooltip(tooltip, ns.points[uiMapID] and ns.points[uiMapID][coord])
 end
 
 ---------------------------------------------------------
@@ -89,22 +87,21 @@ end
 local HLHandler = {}
 local info = {}
 
-function HLHandler:OnEnter(mapFile, coord)
+function HLHandler:OnEnter(uiMapID, coord)
     local tooltip = self:GetParent() == WorldMapButton and WorldMapTooltip or GameTooltip
     if ( self:GetCenter() > UIParent:GetCenter() ) then -- compare X coordinate
         tooltip:SetOwner(self, "ANCHOR_LEFT")
     else
         tooltip:SetOwner(self, "ANCHOR_RIGHT")
     end
-    handle_tooltip_by_coord(tooltip, mapFile, coord)
+    handle_tooltip_by_coord(tooltip, uiMapID, coord)
 end
 
-local function createWaypoint(button, mapFile, coord)
+local function createWaypoint(button, uiMapID, coord)
     if TomTom then
-        local mapId = HandyNotes:GetMapFiletoMapID(mapFile)
         local x, y = HandyNotes:getXY(coord)
-        TomTom:AddMFWaypoint(mapId, nil, x, y, {
-            title = get_point_info_by_coord(mapFile, coord),
+        TomTom:AddWaypoint(uiMapID, x, y, {
+            title = get_point_info_by_coord(uiMapID, coord),
             persistent = nil,
             minimap = true,
             world = true
@@ -112,8 +109,8 @@ local function createWaypoint(button, mapFile, coord)
     end
 end
 
-local function hideNode(button, mapFile, coord)
-    ns.hidden[mapFile][coord] = true
+local function hideNode(button, uiMapID, coord)
+    ns.hidden[uiMapID][coord] = true
     HL:Refresh()
 end
 
@@ -166,16 +163,16 @@ do
     HL_Dropdown.displayMode = "MENU"
     HL_Dropdown.initialize = generateMenu
 
-    function HLHandler:OnClick(button, down, mapFile, coord)
+    function HLHandler:OnClick(button, down, uiMapID, coord)
         if button == "RightButton" and not down then
-            currentZone = string.gsub(mapFile, "_terrain%d+$", "")
+            currentZone = uiMapID
             currentCoord = coord
             ToggleDropDownMenu(1, nil, HL_Dropdown, self, 0, 0)
         end
     end
 end
 
-function HLHandler:OnLeave(mapFile, coord)
+function HLHandler:OnLeave(uiMapID, coord)
     if self:GetParent() == WorldMapButton then
         WorldMapTooltip:Hide()
     else
@@ -185,7 +182,6 @@ end
 
 do
     -- This is a custom iterator we use to iterate over every node in a given zone
-    local currentLevel, currentZone
     local function iter(t, prestate)
         if not t then return nil end
         local state, value = next(t, prestate)
@@ -199,11 +195,8 @@ do
         end
         return nil, nil, nil, nil
     end
-    function HLHandler:GetNodes(mapFile, minimap, level)
-        currentLevel = level
-        mapFile = string.gsub(mapFile, "_terrain%d+$", "")
-        currentZone = mapFile
-        return iter, ns.points[mapFile], nil
+    function HLHandler:GetNodes2(uiMapID, minimap)
+        return iter, ns.points[uiMapID], nil
     end
 end
 

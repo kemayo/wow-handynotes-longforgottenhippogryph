@@ -14,7 +14,7 @@ ns.points = {
         },
     },
     --]]
-    ["Azsuna"] = {
+    [630] = {
         -- Many things from NaThuRe's comment on wowhead
         -- http://www.wowhead.com/item=138258/reins-of-the-long-forgotten-hippogryph#comments:id=2400520
         [29903600] = {},

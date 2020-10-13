@@ -1,4 +1,4 @@
-## Interface: 80100
+## Interface: 90001
 ## Title: HandyNotes_LongForgottenHippogryph
 ## Notes: Find those Ephemeral Crystals!
 ## Author: Kemayo

@@ -2,7 +2,7 @@ name: Package Addon
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
     tags: [ '*' ]
 
 jobs:
@@ -16,7 +16,7 @@ jobs:
           fetch-depth: 0 # reads history for commit changelog
 
       - name: Create Package
-        run: curl -s https://raw.githubusercontent.com/BigWigsMods/packager/master/release.sh | bash
+        uses: BigWigsMods/packager@master
         env:
            CF_API_KEY: ${{ secrets.CF_API_KEY }}
            WOWI_API_TOKEN: ${{ secrets.WOWI_API_TOKEN }}

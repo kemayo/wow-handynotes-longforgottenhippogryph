@@ -4,6 +4,10 @@ ns.hiddenConfig = {
     groupsHidden = true,
 }
 
+ns.defaultsOverride = {
+    show_on_minimap = true,
+}
+
 ns.RegisterPoints(630, {
     -- PurgatoryWolf's comment on wowhead:
     -- https://www.wowhead.com/item=138258/reins-of-the-long-forgotten-hippogryph#comments:id=2453258

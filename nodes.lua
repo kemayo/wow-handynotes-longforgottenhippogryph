@@ -8,6 +8,13 @@ ns.defaultsOverride = {
     show_on_minimap = true,
 }
 
+local EPHEMERAL = {
+    label="Ephemeral Crystal",
+    note="|cFFFFFF00Use five of these before anyone else, without leaving the zone or dying, and you'll get the {item:138258:Reins of the Long-Forgotten Hippogryph}|r",
+    texture=ns.atlas_texture("islands-azeritechest", {r=1, g=0, b=0.5}),
+    group="Long Forgotten Hippogryph",
+}
+
 ns.RegisterPoints(630, {
     -- PurgatoryWolf's comment on wowhead:
     -- https://www.wowhead.com/item=138258/reins-of-the-long-forgotten-hippogryph#comments:id=2453258
@@ -25,7 +32,7 @@ ns.RegisterPoints(630, {
     [36003600] = {note="On cliff edge"},
     [37002175] = {note="By a tree"},
     [37503290] = {note="Behind a wall next to a bush and tree"},
-    [38690931] = {note="On green land next to bush"},
+    [38690931] = {note="On grass next to bush"},
     [40303280] = {note="Next to tree"},
     [40553760] = {note="In the middle of the road, by a tree"},
     [40723590] = {note="Next to tree"},
@@ -50,7 +57,7 @@ ns.RegisterPoints(630, {
     [48884561] = {note="On a rock"},
     [48004800] = {note="Next to the two neutral giants at the bottom of the valley"},
     [48055270] = {note="In the cave next to some piles of gold"},
-    [48575728] = {note="Inside a broken ship in Giant’s cave"},
+    [48575728] = {note="In Oceanus Cove, inside a shipwreck"},
     [49000800] = {note="On a little rock in Lair of the Deposed"},
     [49402400] = {note="In bushes, behind the shrine"},
     [49392770] = {note="Next to a tree"},
@@ -67,7 +74,7 @@ ns.RegisterPoints(630, {
     [51403760] = {note="Underwater, near to Mrrgrl"},
     [51006500] = {note="Next to the rope tied around the poles"},
     [51007500] = {note="In a cave by the roots"},
-    [51805760] = {note="Next to broken ship in Oceanus Cove"},
+    [51805760] = {note="In Oceanus Cove, next to broken ship"},
     [52401340] = {note="Next to a tree"},
     [52292510] = {note="Off road, next to a tree"},
     [52153185] = {note="By the shrine"},
@@ -128,9 +135,10 @@ ns.RegisterPoints(630, {
     [67004600] = {note="By a log"},
     [67105200] = {note="Outside entrance to the Ruined Sanctum"},
     [68202430] = {},
-}, {
-    label="Ephemeral Crystal",
-    note="|cFFFFFF00Use five of these before anyone else, without leaving the zone or dying, and you'll get the {item:138258:Reins of the Long-Forgotten Hippogryph}|r",
-    texture=ns.atlas_texture("islands-azeritechest", {r=1, g=0, b=0.5}),
-    group="Long Forgotten Hippogryph",
-})
+}, EPHEMERAL)
+
+ns.RegisterPoints(632, { -- Oceanus Cove
+    [45833076] = {note="Next to piles of gold"},
+    [50897734] = {note="Inside the shipwreck"},
+    [81138155] = {note="By the shipwreck"},
+}, EPHEMERAL)

@@ -1,8 +1,8 @@
-## Interface: 90207
-## Title: HandyNotes_LongForgottenHippogryph
+## Interface: 100002
+## Title: HandyNotes: Long-Forgotten Hippogryph
 ## Notes: Find those Ephemeral Crystals!
 ## Author: Kemayo
-## Version: 1
+## Version: @project-version@
 ## DefaultState: enabled
 ## X-Category: Achievements
 ## X-eMail: kemayo @ gmail DOT com

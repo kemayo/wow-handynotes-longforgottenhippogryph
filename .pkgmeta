@@ -1,0 +1,4 @@
+package-as: HandyNotes_LongForgottenHippogryph
+
+externals:
+   lib/LibUIDropDownMenu: https://repos.curseforge.com/wow/libuidropdownmenu/trunk/LibUIDropDownMenu

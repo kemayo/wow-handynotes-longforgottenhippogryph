@@ -10,6 +10,7 @@
 ## SavedVariables: HandyNotes_LongForgottenHippogryphDB
 ## RequiredDeps: HandyNotes
 ## OptionalDeps: !LibUIDropDownMenu
+## LoadManagers: HandyNotes_LegionTreasures
 
 #@non-debug@
 # lib\LibUIDropDownMenu\LibUIDropDownMenu.xml

@@ -1,9 +1,5 @@
 local myname, ns = ...
 
-if C_AddOns.IsAddOnLoaded("HandyNotes_LegionTreasures") then
-    do return end
-end
-
 ns.SetupMapOverlay = nil
 
 ns.hiddenConfig = {
